@@ -2,12 +2,11 @@
 
 set -e
 
-confd -onetime -backend=env
-
 command="$1"
 
 case $command in
      server)
+          confd -onetime -backend=env
           /go/bin/bifrost server -c /bifrost.cfg
           ;;
      init)
