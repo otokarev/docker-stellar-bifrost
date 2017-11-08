@@ -19,6 +19,6 @@ RUN go get github.com/lib/pq \
     && go install github.com/stellar/initbifrost
 
 ADD entry.sh /entry.sh
-ENTRYPOINT ["/bin/sh", "/entry.sh"]
+ENTRYPOINT ["/bin/sh", "/entry.sh", "server"]
 
 EXPOSE 3000
