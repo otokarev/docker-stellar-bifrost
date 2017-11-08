@@ -1,0 +1,35 @@
+port = 8000
+using_proxy = false
+access-control-allow-origin-header = "*"
+
+{{$data := json (getenv "BIFROST_CFG")}}
+
+{{if $data.bitcoin}}
+[bitcoin]
+master_public_key = "{{$data.bitcoin.master_public_key}}"
+rpc_server = "{{or (getenv "BIFROST_BITCOIN_RPC_SERVER") $data.bitcoin.rpc_server}}"
+rpc_user = "{{$data.bitcoin.rpc_user}}"
+rpc_pass = "{{$data.bitcoin.rpc_pass}}"
+testnet = "{{$data.bitcoin.testnet}}"
+minimum_value_btc = "{{$data.bitcoin.minimum_value_btc}}"
+{{end}}
+
+{{if $data.ethereum}}
+[ethereum]
+master_public_key = "{{$data.ethereum.master_public_key}}"
+rpc_server = "{{or (getenv "BIFROST_ETHEREUM_RPC_SERVER") $data.ethereum.rpc_server}}"
+network_id = "{{$data.ethereum.network_id}}"
+minimum_value_eth = "{{$data.ethereum.minimum_value_eth}}"
+{{end}}
+
+[stellar]
+issuer_public_key = "{{or (getenv "BIFROST_STELLAR_ISSUER_PUBLIC_KEY") $data.stellar.issuer_public_key}}"
+signer_secret_key = "{{or (getenv "BIFROST_STELLAR_SIGNER_SECRET_KEY") $data.stellar.signer_secret_key}}"
+token_asset_code = "{{$data.stellar.token_asset_code}}"
+needs_authorize = {{$data.stellar.needs_authorize}}
+horizon = "{{or (getenv "BIFROST_STELLAR_HORIZON") $data.stellar.horizon}}"
+network_passphrase = "{{$data.stellar.network_passphrase}}"
+
+[database]
+type="{{or (getenv "BIFROST_DB_TYPE") $data.database.type}}"
+dsn="{{or (getenv "BIFROST_DB_DSN") $data.database.dsn}}"

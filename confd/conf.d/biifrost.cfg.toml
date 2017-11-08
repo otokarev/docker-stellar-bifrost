@@ -1,0 +1,4 @@
+[template]
+src = "bifrost.cfg.tmpl"
+dest = "/bifrost.cfg"
+mode = "0644"
