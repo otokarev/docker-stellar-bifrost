@@ -1,0 +1,13 @@
+diff --git a/services/bifrost/stellar/account_configurator.go b/services/bifrost/stellar/account_configurator.go
+index 7d96fae..5084e9e 100644
+--- a/services/bifrost/stellar/account_configurator.go
++++ b/services/bifrost/stellar/account_configurator.go
+@@ -12,7 +12,7 @@ import (
+ )
+ 
+ // NewAccountXLMBalance is amount of lumens sent to new accounts
+-const NewAccountXLMBalance = "41"
++const NewAccountXLMBalance = "51"
+ 
+ func (ac *AccountConfigurator) Start() error {
+ 	ac.log = common.CreateLogger("StellarAccountConfigurator")

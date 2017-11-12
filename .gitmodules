@@ -1,3 +1,0 @@
-[submodule "stellar-monorepo"]
-	path = stellar-monorepo
-	url = git@github.com:stellar/go.git

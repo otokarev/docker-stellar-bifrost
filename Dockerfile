@@ -1,8 +1,12 @@
 FROM golang
 
 # deploy bifrost binary
-ADD stellar-monorepo /go/src/github.com/stellar/go
-RUN cd /go/src/github.com/stellar/go \
+ADD initial_balance_fix.patch /
+RUN mkdir -p /go/src/github.com/stellar/ \
+    && git clone https://github.com/stellar/go.git /go/src/github.com/stellar/go \
+    && cd /go/src/github.com/stellar/go \
+    && git checkout 1c3482fd5918eb7ffcac9f06dc2afc28788509c4 \
+    && git apply /initial_balance_fix.patch \
     && curl https://glide.sh/get | sh \
     && glide install \
     && go install github.com/stellar/go/services/bifrost
