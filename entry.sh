@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 set -e
 
@@ -6,7 +6,7 @@ command="$1"
 
 case $command in
      server)
-          confd -onetime -backend=env
+          /usr/local/bin/confd -onetime -backend=env
           /go/bin/bifrost server -c /bifrost.cfg
           ;;
      init)
