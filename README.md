@@ -40,3 +40,7 @@ Following ENV variables can be used to override/set key values of `BIFROST_CFG`
 * `BIFROST_STELLAR_HORIZON`
 * `BIFROST_DB_TYPE`
 * `BIFROST_DB_DSN`
+
+Set variables below to you want move forward starting point of the blockchains' block scanning
+* `ETHEREUM_LAST_BLOCK`
+* `BITCOIN_LAST_BLOCK`

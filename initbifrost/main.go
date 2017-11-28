@@ -33,4 +33,19 @@ func main()  {
 		}
 	}
 
+	ethereumLastBlock := os.Getenv("ETHEREUM_LAST_BLOCK")
+	if ethereumLastBlock != "" {
+		_, err := db.Exec("UPDATE key_value_store SET value = $1 WHERE key = $2", ethereumLastBlock, "ethereum_last_block")
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	bitcoinLastBlock := os.Getenv("BITCOIN_LAST_BLOCK")
+	if bitcoinLastBlock != "" {
+		_, err := db.Exec("UPDATE key_value_store SET value = $1 WHERE key = $2", bitcoinLastBlock, "bitcoin_last_block")
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 }
