@@ -6,7 +6,7 @@ RUN mkdir -p /go/src/github.com/stellar/ \
     && apk add --no-cache git curl wget mercurial make gcc  musl-dev linux-headers\
     && git clone https://github.com/stellar/go.git /go/src/github.com/stellar/go \
     && cd /go/src/github.com/stellar/go \
-    && git checkout 1c3482fd5918eb7ffcac9f06dc2afc28788509c4 \
+    && git checkout d25748009082df14197add9cc3a2d6657bfeaf07 \
     && git apply /initial_balance_fix.patch \
     && curl https://glide.sh/get | sh \
     && glide install \
