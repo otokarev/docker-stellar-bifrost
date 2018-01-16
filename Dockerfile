@@ -1,14 +1,16 @@
 FROM golang:alpine as builder
 
+#Snapshots 2018-01-10-23:14:45
+ENV HORIZON_VERSION=eb8599c75aebcbe2fbf89fba3a5d9e13a4402201
+
 # deploy bifrost binary
 ADD initial_balance_fix.patch /
 RUN mkdir -p /go/src/github.com/stellar/ \
-    && apk add --no-cache git curl wget mercurial make gcc  musl-dev linux-headers\
+    && apk add --no-cache git wget glide mercurial gcc musl-dev \
     && git clone https://github.com/stellar/go.git /go/src/github.com/stellar/go \
     && cd /go/src/github.com/stellar/go \
-    && git checkout d25748009082df14197add9cc3a2d6657bfeaf07 \
+    && git checkout $HORIZON_VERSION \
     && git apply /initial_balance_fix.patch \
-    && curl https://glide.sh/get | sh \
     && glide install \
     && go install github.com/stellar/go/services/bifrost
 
