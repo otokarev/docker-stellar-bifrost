@@ -1,0 +1,23 @@
+diff --git a/services/bifrost/server/server.go b/services/bifrost/server/server.go
+index eb69a86..05138b5 100644
+--- a/services/bifrost/server/server.go
++++ b/services/bifrost/server/server.go
+@@ -124,6 +124,7 @@ func (s *Server) startHTTPServer() {
+ 	r.Post("/generate-bitcoin-address", s.HandlerGenerateBitcoinAddress)
+ 	r.Post("/generate-ethereum-address", s.HandlerGenerateEthereumAddress)
+ 	r.Post("/recovery-transaction", s.HandlerRecoveryTransaction)
++	r.Post("/", s.HandlerHealthCheck)
+ 
+ 	log.WithField("port", s.Config.Port).Info("Starting HTTP server")
+ 
+@@ -312,3 +313,10 @@ func (s *Server) HandlerRecoveryTransaction(w http.ResponseWriter, r *http.Reque
+ 	w.WriteHeader(http.StatusOK)
+ 	return
+ }
++
++func (s *Server) HandlerHealthCheck(w http.ResponseWriter, r *http.Request) {
++	w.Header().Set("Access-Control-Allow-Origin", s.Config.AccessControlAllowOriginHeader)
++
++	w.WriteHeader(http.StatusOK)
++	return
++}
