@@ -7,7 +7,7 @@ ENV HORIZON_VERSION=eb8599c75aebcbe2fbf89fba3a5d9e13a4402201
 ADD initial_balance_fix.patch /
 ADD healthcheck.patch /
 RUN mkdir -p /go/src/github.com/stellar/ \
-    && apk add --no-cache git wget glide mercurial gcc musl-dev \
+    && apk add --no-cache git wget glide mercurial gcc musl-dev ca-certificates \
     && git clone https://github.com/stellar/go.git /go/src/github.com/stellar/go \
     && cd /go/src/github.com/stellar/go \
     && git checkout $HORIZON_VERSION \
